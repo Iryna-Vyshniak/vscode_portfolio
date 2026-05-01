@@ -1,31 +1,31 @@
 /* VS Code Portfolio Styles */
 :root {
-    --bg-main: #282A36;
-    --bg-sidebar: #1d1e24;
-    --bg-activity: #1d1e24;
-    --bg-status: #1d1e24;
-    --bg-titlebar: #1d1e24;
-    --bg-tabs: #1d1e24;
-    --bg-tab-active: #282A36;
-    --bg-tab-inactive: #1d1e24;
-    --text-main: #f0f8ff;
-    --text-muted: #6272a4;
-    --text-menu: #cccccc;
-    --accent-blue: #bd93f9;
-    --border-color: #44475a;
-    --hover-bg: #44475a;
-    --active-item: #44475a;
+    --bg-main: #24293E;
+    --bg-sidebar: #1C2031;
+    --bg-activity: #1C2031;
+    --bg-status: #1C2031;
+    --bg-titlebar: #1C2031;
+    --bg-tabs: #1C2031;
+    --bg-tab-active: #24293E;
+    --bg-tab-inactive: #1C2031;
+    --text-main: #E8EBF2;
+    --text-muted: #7E869E;
+    --text-menu: #B0B5C6;
+    --accent-blue: #FFE135;
+    --border-color: #383F5C;
+    --hover-bg: #383F5C;
+    --active-item: #383F5C;
     
     /* Syntax Highlighting */
-    --syn-keyword: #ff79c6;
-    --syn-string: #f1fa8c;
-    --syn-comment: #6272a4;
-    --syn-function: #50fa7b;
-    --syn-variable: #f8f8f2;
-    --syn-number: #bd93f9;
-    --syn-property: #8be9fd;
-    --syn-operator: #ff79c6;
-    --syn-type: #8be9fd;
+    --syn-keyword: #FFE135;
+    --syn-string: #9AE091;
+    --syn-comment: #7E869E;
+    --syn-function: #FFB347;
+    --syn-variable: #E8EBF2;
+    --syn-number: #FCE883;
+    --syn-property: #91B9E0;
+    --syn-operator: #FFE135;
+    --syn-type: #91B9E0;
 }
 
 * {
@@ -621,7 +621,7 @@ i[class^="icon-"] {
 .icon-file-add::before { content: '📄'; filter: grayscale(1); }
 .icon-folder-open::before { content: '📂'; filter: grayscale(1); }
 .icon-repo::before { content: '🌿'; filter: grayscale(1); }
-.icon-thunder-client-large::before { content: '⚡'; font-size: 32px; color: #bd93f9; display: block; margin-right: 15px; }
+.icon-thunder-client-large::before { content: '⚡'; font-size: 32px; color: var(--accent-blue); display: block; margin-right: 15px; }
 
 /* Status Bar */
 .status-bar {
@@ -659,7 +659,7 @@ i[class^="icon-"] {
     height: 22px;
 }
 .remote-status:hover {
-    background-color: #a77dfa;
+    background-color: #E5C925;
 }
 
 /* Mobile Responsive */
