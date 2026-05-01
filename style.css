@@ -772,6 +772,11 @@ i[class^="icon-"] {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+a.status-item { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
 .remote-status {
   background-color: rgba(0, 0, 0, 0.1);
   color: #18182b;
