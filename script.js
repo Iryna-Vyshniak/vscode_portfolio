@@ -294,6 +294,22 @@ Practice does.
 
 <span class="syn-keyword">export default</span> <span class="syn-type">Education</span>;`;
 
+    const mainCode = `<span class="syn-keyword">import</span> React <span class="syn-keyword">from</span> <span class="syn-string">'react'</span>;
+<span class="syn-keyword">import</span> ReactDOM <span class="syn-keyword">from</span> <span class="syn-string">'react-dom/client'</span>;
+<span class="syn-keyword">import</span> App <span class="syn-keyword">from</span> <span class="syn-string">'./App.jsx'</span>;
+<span class="syn-keyword">import</span> <span class="syn-string">'./index.css'</span>;
+
+<span class="syn-comment">// Initialize the portfolio matrix</span>
+<span class="syn-comment">// Warning: highly concentrated ambition inside ⚠️</span>
+console.<span class="syn-function">log</span>(<span class="syn-string">"Booting up Iryna's VS Code ecosystem..."</span>);
+console.<span class="syn-function">log</span>(<span class="syn-string">"Theme loaded: Blueberry Banana 🫐🍌"</span>);
+
+ReactDOM.<span class="syn-function">createRoot</span>(document.<span class="syn-function">getElementById</span>(<span class="syn-string">'root'</span>)).<span class="syn-function">render</span>(
+  <span class="syn-operator">&lt;</span><span class="syn-type">React.StrictMode</span><span class="syn-operator">&gt;</span>
+    <span class="syn-operator">&lt;</span><span class="syn-type">App</span> <span class="syn-operator">/&gt;</span>
+  <span class="syn-operator">&lt;/</span><span class="syn-type">React.StrictMode</span><span class="syn-operator">&gt;</span>,
+);`;
+
     const syntaxHighlightComments = (str) => {
         // Safe wrap comments unless already wrapped
         return str.replace(/(\/\/[^\n]*)/g, '<span class="syn-comment">$1</span>')
@@ -305,6 +321,7 @@ Practice does.
         if (filename === 'Skills.jsx') return skillsCode;
         if (filename === 'Contacts.jsx') return contactsCode;
         if (filename === 'Education.jsx') return educationCode;
+        if (filename === 'main.jsx') return mainCode;
 
         return syntaxHighlightComments(`// TODO: Content for ${filename} goes here...
 
