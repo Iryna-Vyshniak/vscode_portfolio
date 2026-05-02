@@ -10,46 +10,202 @@ document.addEventListener('DOMContentLoaded', () => {
     // Store opened tabs { filename: true }
     const openedTabs = new Set();
     
-    // The exact specific code string
-    const aboutCode = `// Don't change anything, it's working very well 😉
-/*
-"She doesn't know everything.
-But she knows enough
-to figure out the rest faster than you expect."
-*/
-<span class="syn-keyword">const</span> <span class="syn-variable">Iryna</span> <span class="syn-operator">=</span> {
-  <span class="syn-property">name</span>: <span class="syn-string">"Iryna V-N"</span>,
-  <span class="syn-property">title</span>: <span class="syn-string">"Future Full Stack Developer (almost legendary 💅)"</span>,
-  <span class="syn-property">origin</span>: { <span class="syn-property">country</span>: <span class="syn-string">"Україна 🇺🇦"</span>, <span class="syn-property">coordinates</span>: <span class="syn-string">"там, де сильні люди і гарний код народжуються"</span> },
-  <span class="syn-property">status</span>: <span class="syn-string">"openToWork && openToMagic"</span>,
-  <span class="syn-property">skills</span>: {
-    <span class="syn-property">favorite</span>: [<span class="syn-string">"React"</span>, <span class="syn-string">"shadcn/ui"</span>, <span class="syn-string">"Tailwind CSS"</span>, <span class="syn-string">"Framer Motion"</span>],
-    <span class="syn-property">learning</span>: [<span class="syn-string">"React Native"</span>, <span class="syn-string">"Ionic"</span>, <span class="syn-string">"Next.js"</span>, <span class="syn-string">"Angular"</span>]
-  },
-  <span class="syn-property">bio</span>: [
+    // The exact specific code strings with highlighting markup
+    const aboutCode = `<span class="syn-keyword">import</span> React, { useEffect } <span class="syn-keyword">from</span> <span class="syn-string">'react'</span>;
+
+<span class="syn-comment">// "She doesn't know everything.</span>
+<span class="syn-comment">// But she knows enough</span>
+<span class="syn-comment">// to figure out the rest faster than you expect."</span>
+
+<span class="syn-keyword">const</span> <span class="syn-type">About</span> <span class="syn-keyword">=</span> () <span class="syn-keyword">=></span> {
+  <span class="syn-keyword">const</span> person <span class="syn-keyword">=</span> {
+    name: <span class="syn-string">"Iryna Vyshniak"</span>,
+    title: <span class="syn-string">"Future Full Stack Developer (almost legendary 💅)"</span>,
+    origin: { country: <span class="syn-string">"Україна 🇺🇦"</span>, coordinates: <span class="syn-string">"там, де сильні люди і гарний код народжуються"</span> },
+    status: <span class="syn-string">"openToWork && openToMagic"</span>
+  };
+
+  <span class="syn-keyword">const</span> skills <span class="syn-keyword">=</span> {
+    favorite: [<span class="syn-string">"React"</span>, <span class="syn-string">"shadcn/ui"</span>, <span class="syn-string">"Tailwind CSS"</span>, <span class="syn-string">"Framer Motion"</span>],
+    learning: [<span class="syn-string">"React Native"</span>, <span class="syn-string">"Ionic"</span>, <span class="syn-string">"Next.js"</span>, <span class="syn-string">"Angular"</span>]
+  };
+
+  <span class="syn-keyword">const</span> bio <span class="syn-keyword">=</span> [
     <span class="syn-string">"// Programming is not just code — it's моя територія спокою"</span>,
     <span class="syn-string">"// Коли світ шумить — я пишу логіку"</span>,
-    <span class="syn-string">"// Книги надихають, порцелянові квіти заспокоюють, код захоплює"</span>,
+    <span class="syn-string">"// Книги - надихають, art - заспокоює, код - захоплює"</span>,
     <span class="syn-string">"// І так, іноді я думаю як компонент React"</span>
-  ],
-  <span class="syn-property">softSkills</span>: [
+  ];
+
+  <span class="syn-keyword">const</span> softSkills <span class="syn-keyword">=</span> [
     <span class="syn-string">"переживаю глибше, ніж баги в продакшені"</span>,
     <span class="syn-string">"вчуся швидше, ніж падає мотивація"</span>,
     <span class="syn-string">"тримаюсь навіть коли все хоче впасти"</span>
-  ],
-  <span class="syn-property">companion</span>: { <span class="syn-property">name</span>: <span class="syn-string">"Fletcher 🐾"</span>, <span class="syn-property">role</span>: <span class="syn-string">"QA"</span> },
-  <span class="syn-property">future</span>: {
-    <span class="syn-property">goals</span>: [<span class="syn-string">"become legendary fullstack"</span>, <span class="syn-string">"web + mobile products"</span>],
-    <span class="syn-property">description</span>: <span class="syn-string">"ambitious, трохи зухвалий і точно мій"</span>
-  }
+  ];
+
+  <span class="syn-keyword">const</span> companion <span class="syn-keyword">=</span> { 
+    name: <span class="syn-string">"Fletcher 🐾"</span>, 
+    role: <span class="syn-string">"Head of QA & emotional support department 🐾"</span> <span class="syn-comment">// occasionally interrupts debugging sessions for mandatory petting</span>
+  };
+
+  <span class="syn-keyword">const</span> future <span class="syn-keyword">=</span> {
+    goals: [<span class="syn-string">"become strong fullstack"</span>, <span class="syn-string">"web + mobile products"</span>],
+    description: <span class="syn-string">"ambitious, трохи зухвалий і точно мій"</span>
+  };
+
+  <span class="syn-comment">// main loop</span>
+  <span class="syn-function">useEffect</span>(() <span class="syn-keyword">=></span> {
+    <span class="syn-keyword">let</span> alive <span class="syn-keyword">=</span> <span class="syn-keyword">true</span>;
+    <span class="syn-keyword">while</span> (alive) {
+      <span class="syn-function">learn</span>();
+      <span class="syn-function">code</span>();
+      <span class="syn-function">create</span>();
+      <span class="syn-function">overthink</span>(); <span class="syn-comment">// optional, але часто true 😅</span>
+    }
+    <span class="syn-keyword">return</span> () <span class="syn-keyword">=></span> alive <span class="syn-keyword">=</span> <span class="syn-keyword">false</span>;
+  }, []);
+
+  <span class="syn-keyword">return</span> (
+    <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"about-wrapper"</span> <span class="syn-property">data-status</span><span class="syn-keyword">=</span>{person.status}<span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">header</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h1</span><span class="syn-operator">&gt;</span>{person.name}<span class="syn-operator">&lt;/</span><span class="syn-type">h1</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>{person.title}<span class="syn-operator">&lt;/</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>{person.origin.country} — {person.origin.coordinates}<span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">header</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"bio-logs"</span><span class="syn-operator">&gt;</span>
+        {bio.map((log, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">p</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index} <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"code-comment"</span><span class="syn-operator">&gt;</span>{log}<span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>)}
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"core-skills"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Soft Skills<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+          {softSkills.map((skill, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{skill}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+        <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"companion-block"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Companion<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">p</span><span class="syn-operator">&gt;&lt;</span><span class="syn-type">strong</span><span class="syn-operator">&gt;</span>{companion.name}<span class="syn-operator">&lt;/</span><span class="syn-type">strong</span><span class="syn-operator">&gt;</span>: {companion.role}<span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"future-vision"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Future Vision: {future.description}<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+          {future.goals.map((goal, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{goal}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+        <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+    <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+  );
 };
-<span class="syn-comment">// main loop</span>
-<span class="syn-keyword">while</span> (<span class="syn-variable">alive</span>) {
-  <span class="syn-function">learn</span>();
-  <span class="syn-function">code</span>();
-  <span class="syn-function">create</span>();
-  <span class="syn-function">overthink</span>(); <span class="syn-comment">// optional, але часто true 😅</span>
-}`;
+
+<span class="syn-keyword">export default</span> <span class="syn-type">About</span>;`;
+
+    const skillsCode = `<span class="syn-keyword">import</span> React, { useEffect } <span class="syn-keyword">from</span> <span class="syn-string">'react'</span>;
+
+<span class="syn-comment">// "Skills are not a list.</span>
+<span class="syn-comment">// They’re what I actually use when things break."</span>
+
+<span class="syn-keyword">const</span> <span class="syn-type">Skills</span> <span class="syn-keyword">=</span> () <span class="syn-keyword">=></span> {
+  <span class="syn-keyword">const</span> energy <span class="syn-keyword">=</span> <span class="syn-string">"calm outside, debugger inside 🔥"</span>;
+
+  <span class="syn-keyword">const</span> mindset <span class="syn-keyword">=</span> [
+    <span class="syn-string">"8+ hours per day? easily."</span>,
+    <span class="syn-string">"attention to detail — навіть там, де її не шукають"</span>,
+    <span class="syn-string">"learning mode: always ON"</span>,
+    <span class="syn-string">"team player, але думаю самостійно"</span>,
+    <span class="syn-string">"customer-first, навіть якщо це мій власний проєкт"</span>,
+    <span class="syn-string">"creative problem solving > panic"</span>
+  ];
+
+  <span class="syn-keyword">const</span> techStack <span class="syn-keyword">=</span> {
+    languages: [<span class="syn-string">"HTML (structure matters)"</span>, <span class="syn-string">"CSS (make it beautiful)"</span>, <span class="syn-string">"JavaScript (make it work)"</span>, <span class="syn-string">"TypeScript (make it safe)"</span>],
+    frontend: [<span class="syn-string">"React (main weapon)"</span>, <span class="syn-string">"Next.js (leveling up)"</span>, <span class="syn-string">"Tailwind CSS"</span>, <span class="syn-string">"MUI / Chakra / shadcn (UI without suffering)"</span>],
+    backend: [<span class="syn-string">"Node.js (logic lives here)"</span>, <span class="syn-string">"Express (keep it simple)"</span>],
+    mobile: [<span class="syn-string">"React Native (code without borders)"</span>, <span class="syn-string">"Ionic (because why not)"</span>],
+    database: [<span class="syn-string">"MongoDB (flexible like me)"</span>, <span class="syn-string">"SQLite (small but solid)"</span>],
+    devOps: [<span class="syn-string">"Vercel (deploy & breathe)"</span>, <span class="syn-string">"Render"</span>, <span class="syn-string">"Netlify"</span>],
+    tools: [<span class="syn-string">"Git (my memory)"</span>, <span class="syn-string">"Postman (truth checker)"</span>, <span class="syn-string">"Figma"</span>, <span class="syn-string">"Swagger"</span>, <span class="syn-string">"VS Code (home 🏠)"</span>],
+    extras: [<span class="syn-string">"Socket.io (real-time things)"</span>, <span class="syn-string">"Firebase"</span>, <span class="syn-string">"Mongoose"</span>, <span class="syn-string">"Axios"</span>, <span class="syn-string">"Clerk Auth"</span>, <span class="syn-string">"i18next"</span>, <span class="syn-string">"Formik"</span>]
+  };
+
+  <span class="syn-comment">// main loop</span>
+  <span class="syn-function">useEffect</span>(() <span class="syn-keyword">=></span> {
+    <span class="syn-keyword">let</span> alive <span class="syn-keyword">=</span> <span class="syn-keyword">true</span>;
+    <span class="syn-keyword">while</span> (alive) {
+      <span class="syn-function">learn</span>();
+      <span class="syn-function">build</span>();
+      <span class="syn-function">getBetter</span>();
+    }
+    <span class="syn-keyword">return</span> () <span class="syn-keyword">=></span> alive <span class="syn-keyword">=</span> <span class="syn-keyword">false</span>;
+  }, []);
+
+  <span class="syn-keyword">return</span> (
+    <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"skills-container"</span> <span class="syn-property">data-vibe</span><span class="syn-keyword">=</span>{energy}<span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>My Mindset<span class="syn-operator">&lt;/</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+        {mindset.map((item, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{item}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+      <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>Tech Stack<span class="syn-operator">&lt;/</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"tech-stack-grid"</span><span class="syn-operator">&gt;</span>
+        {Object.entries(techStack).map(([category, items]) <span class="syn-keyword">=></span> (
+          <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{category} <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"tech-category"</span><span class="syn-operator">&gt;</span>
+            <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>{category}<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+            <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+              {items.map((item, idx) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{idx}<span class="syn-operator">&gt;</span>{item}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+            <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+          <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+        ))}
+      <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+    <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+  );
+};
+
+<span class="syn-keyword">export default</span> <span class="syn-type">Skills</span>;`;
+
+    const contactsCode = `<span class="syn-keyword">import</span> React, { useState } <span class="syn-keyword">from</span> <span class="syn-string">'react'</span>;
+<span class="syn-keyword">import</span> { sendEmail, openLinkedIn, maybeScrollInstagram } <span class="syn-keyword">from</span> <span class="syn-string">'../utils/actions'</span>;
+
+<span class="syn-comment">// "Need to reach me? Good choice."</span>
+
+<span class="syn-keyword">const</span> <span class="syn-type">Contacts</span> <span class="syn-keyword">=</span> () <span class="syn-keyword">=></span> {
+  <span class="syn-keyword">const</span> [status] <span class="syn-keyword">=</span> <span class="syn-function">useState</span>(<span class="syn-string">"openToWork"</span>);
+  <span class="syn-keyword">const</span> [mood] <span class="syn-keyword">=</span> <span class="syn-function">useState</span>(<span class="syn-string">"motivated & slightly unstoppable"</span>);
+
+  <span class="syn-keyword">const</span> note <span class="syn-keyword">=</span> <span class="syn-string">\`I reply faster than most APIs.
+  Unless I'm coding.
+  Then... give me a minute 😏\`</span>;
+
+  <span class="syn-comment">// quick access</span>
+  <span class="syn-keyword">const</span> <span class="syn-function">reachMe</span> <span class="syn-keyword">=</span> () <span class="syn-keyword">=></span> {
+    <span class="syn-function">sendEmail</span>(<span class="syn-string">"iryna.vyshniak@gmail.com"</span>);
+    <span class="syn-function">openLinkedIn</span>(<span class="syn-string">"Iryna Vyshniak"</span>);
+    <span class="syn-function">maybeScrollInstagram</span>(); <span class="syn-comment">// optional but recommended 😄</span>
+  };
+
+  <span class="syn-comment">// bonus</span>
+  <span class="syn-keyword">if</span> (navigator.userAgent.<span class="syn-function">includes</span>(<span class="syn-string">"HR"</span>)) {
+    console.<span class="syn-function">log</span>(<span class="syn-string">"You just found your developer."</span>);
+  }
+
+  <span class="syn-keyword">return</span> (
+    <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"contact-wrapper"</span> <span class="syn-property">data-status</span><span class="syn-keyword">=</span>{status} <span class="syn-property">data-mood</span><span class="syn-keyword">=</span>{mood}<span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Let's Connect<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">p</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"contact-note"</span><span class="syn-operator">&gt;</span>{note}<span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>
+      
+      <span class="syn-operator">&lt;</span><span class="syn-type">button</span> <span class="syn-property">onClick</span><span class="syn-keyword">=</span>{reachMe} <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"btn-primary"</span><span class="syn-operator">&gt;</span>
+        Initialize Contact
+      <span class="syn-operator">&lt;/</span><span class="syn-type">button</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">footer</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"social-links"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">a</span> <span class="syn-property">href</span><span class="syn-keyword">=</span><span class="syn-string">"https://twitter.com/YarynaVN"</span><span class="syn-operator">&gt;</span>Twitter<span class="syn-operator">&lt;/</span><span class="syn-type">a</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">a</span> <span class="syn-property">href</span><span class="syn-keyword">=</span><span class="syn-string">"https://www.instagram.com/arteincode/"</span><span class="syn-operator">&gt;</span>Instagram<span class="syn-operator">&lt;/</span><span class="syn-type">a</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">footer</span><span class="syn-operator">&gt;</span>
+    <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+  );
+};
+
+<span class="syn-keyword">export default</span> <span class="syn-type">Contacts</span>;`;
 
     const syntaxHighlightComments = (str) => {
         // Safe wrap comments unless already wrapped
@@ -58,15 +214,15 @@ to figure out the rest faster than you expect."
     };
 
     const getCodeForFile = (filename) => {
-        if (filename === 'About.jsx') {
-            return aboutCode; // About code is already highlighted with spans
-        } else {
-            return syntaxHighlightComments(`// TODO: Content for ${filename} goes here...
+        if (filename === 'About.jsx') return aboutCode;
+        if (filename === 'Skills.jsx') return skillsCode;
+        if (filename === 'Contacts.jsx') return contactsCode;
+
+        return syntaxHighlightComments(`// TODO: Content for ${filename} goes here...
 
 <span class="syn-keyword">export default function</span> <span class="syn-function">Component</span>() { 
   <span class="syn-keyword">return</span> <span class="syn-operator">&lt;</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>${filename} Data<span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>; 
 }`);
-        }
     };
 
     const activateTab = (filename) => {
