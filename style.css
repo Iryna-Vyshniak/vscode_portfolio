@@ -17,15 +17,15 @@
   --active-item: #313159;
 
   /* Syntax Highlighting */
-  --syn-keyword: #fcf141;
-  --syn-string: #67e8f5;
-  --syn-comment: #8c8cbd;
-  --syn-function: #fc94f9;
-  --syn-variable: #f0f0f5;
-  --syn-number: #fc94f9;
-  --syn-property: #fc94f9;
-  --syn-operator: #fcf141;
-  --syn-type: #67e8f5;
+  --syn-keyword: #ff79c6;
+  --syn-string: #fce94f;
+  --syn-comment: #6272a4;
+  --syn-function: #8be9fd;
+  --syn-variable: #f8f8f2;
+  --syn-number: #bd93f9;
+  --syn-property: #f8f8f2;
+  --syn-operator: #ff79c6;
+  --syn-type: #8be9fd;
 }
 
 * {
@@ -38,14 +38,14 @@ body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: var(--bg-main);
   color: var(--text-main);
-  height: 100vh;
+  height: 100dvh;
   overflow: hidden;
 }
 
 .vscode-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  height: 100dvh;
 }
 
 /* Windows 11 Title Bar */
@@ -151,7 +151,7 @@ body {
   display: grid;
   grid-template-columns: 48px 250px minmax(0, 1fr);
   flex: 1;
-  height: calc(100vh - 57px); /* 35px top + 22px bottom */
+  min-height: 0;
   position: relative;
   overflow: hidden;
 }
@@ -164,6 +164,12 @@ body {
   flex-direction: column;
   justify-content: space-between;
   border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.activity-bar::-webkit-scrollbar {
+  display: none;
 }
 
 .activity-icons,
@@ -752,9 +758,21 @@ i[class^="icon-"] {
   padding: 0 10px;
   font-size: 12px;
   flex-shrink: 0;
+  white-space: nowrap;
+  overflow-x: auto;
 }
 
-.status-left,
+.status-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.status-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+}
+
 .status-right {
   display: flex;
   gap: 12px;
@@ -767,7 +785,17 @@ i[class^="icon-"] {
   padding: 0 4px;
   display: flex;
   align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  height: 100%;
 }
+
+.status-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
 .status-item:hover {
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -778,16 +806,28 @@ a.status-item {
 }
 
 .remote-status {
-  background-color: rgba(0, 0, 0, 0.1);
-  color: #18182b;
-  padding: 0 8px;
-  height: 22px;
+  background-color: #201130;
+  color: #fce94f;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
 }
+
 .remote-status:hover {
-  background-color: rgba(0, 0, 0, 0.15);
+  background-color: rgba(32, 17, 48, 0.9);
 }
 
 /* Mobile Responsive */
+@media (max-width: 800px) {
+  .status-right .status-item:nth-child(1),
+  .status-right .status-item:nth-child(3),
+  .status-right .status-item:nth-child(4) {
+    display: none;
+  }
+}
+
 @media (max-width: 768px) {
   .main-body {
     grid-template-columns: 48px minmax(0, 1fr);
