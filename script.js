@@ -207,6 +207,93 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <span class="syn-keyword">export default</span> <span class="syn-type">Contacts</span>;`;
 
+    const educationCode = `<span class="syn-keyword">import</span> React <span class="syn-keyword">from</span> <span class="syn-string">'react'</span>;
+
+<span class="syn-comment">/*
+"Education is not where I started.
+It's how I keep going."
+*/</span>
+
+<span class="syn-keyword">const</span> <span class="syn-type">Education</span> <span class="syn-keyword">=</span> () <span class="syn-keyword">=></span> {
+  <span class="syn-keyword">const</span> path <span class="syn-keyword">=</span> <span class="syn-string">"self-taught developer"</span>;
+
+  <span class="syn-keyword">const</span> sources <span class="syn-keyword">=</span> [
+    <span class="syn-string">"Udemy"</span>,
+    <span class="syn-string">"YouTube"</span>,
+    <span class="syn-string">"freeCodeCamp"</span>,
+    <span class="syn-string">"official documentation (when things get serious)"</span>
+  ];
+
+  <span class="syn-keyword">const</span> method <span class="syn-keyword">=</span> [
+    <span class="syn-string">"learn → build → break → fix → repeat"</span>,
+    <span class="syn-string">"real projects over passive watching"</span>,
+    <span class="syn-string">"docs first, panic later 😏"</span>
+  ];
+
+  <span class="syn-keyword">const</span> focus <span class="syn-keyword">=</span> [
+    <span class="syn-string">"React (deep dive through real projects)"</span>,
+    <span class="syn-string">"Next.js (learning by building)"</span>,
+    <span class="syn-string">"React Native & Ionic (mobile direction)"</span>,
+    <span class="syn-string">"JavaScript deep understanding"</span>,
+    <span class="syn-string">"UI/UX basics (Figma + practice)"</span>,
+    <span class="syn-string">"debugging via Google, StackOverflow & stubbornness 😏"</span>
+  ];
+
+  <span class="syn-keyword">const</span> approach <span class="syn-keyword">=</span> [
+    <span class="syn-string">"// не чекаю ідеального моменту — просто починаю"</span>,
+    <span class="syn-string">"// вчуся через практику, а не тільки теорію"</span>,
+    <span class="syn-string">"// якщо щось не працює — розбираюсь, поки не зрозумію"</span>,
+    <span class="syn-string">"// кожен проєкт = новий рівень"</span>
+  ];
+
+  <span class="syn-keyword">const</span> realityCheck <span class="syn-keyword">=</span> <span class="syn-string">\`
+Courses don’t make developers.
+Practice does.
+\`</span>;
+
+  <span class="syn-keyword">return</span> (
+    <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"education-wrapper"</span> <span class="syn-property">data-path</span><span class="syn-keyword">=</span>{path}<span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;</span><span class="syn-type">header</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>Path: {path}<span class="syn-operator">&lt;/</span><span class="syn-type">h2</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">header</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">div</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"education-grid"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"edu-sources"</span><span class="syn-operator">&gt;</span>
+          <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Sources<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+          <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+            {sources.map((item, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{item}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+          <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+        <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"edu-methods"</span><span class="syn-operator">&gt;</span>
+          <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Method<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+          <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+            {method.map((item, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{item}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+          <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"edu-focus"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>Current Focus<span class="syn-operator">&lt;/</span><span class="syn-type">h3</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+          {focus.map((item, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">li</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&lt;/</span><span class="syn-type">li</span><span class="syn-operator">&gt;</span>)}
+        <span class="syn-operator">&lt;/</span><span class="syn-type">ul</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">section</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"edu-approach code-comments"</span><span class="syn-operator">&gt;</span>
+        {approach.map((item, index) <span class="syn-keyword">=></span> <span class="syn-operator">&lt;</span><span class="syn-type">p</span> <span class="syn-property">key</span><span class="syn-keyword">=</span>{index}<span class="syn-operator">&gt;</span>{item}<span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>)}
+      <span class="syn-operator">&lt;/</span><span class="syn-type">section</span><span class="syn-operator">&gt;</span>
+
+      <span class="syn-operator">&lt;</span><span class="syn-type">footer</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"reality-check"</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">blockquote</span><span class="syn-operator">&gt;</span>{realityCheck.trim()}<span class="syn-operator">&lt;/</span><span class="syn-type">blockquote</span><span class="syn-operator">&gt;</span>
+        <span class="syn-operator">&lt;</span><span class="syn-type">p</span> <span class="syn-property">className</span><span class="syn-keyword">=</span><span class="syn-string">"code-comment"</span><span class="syn-operator">&gt;</span><span class="syn-comment">// still learning. not slowing down.</span><span class="syn-operator">&lt;/</span><span class="syn-type">p</span><span class="syn-operator">&gt;</span>
+      <span class="syn-operator">&lt;/</span><span class="syn-type">footer</span><span class="syn-operator">&gt;</span>
+    <span class="syn-operator">&lt;/</span><span class="syn-type">div</span><span class="syn-operator">&gt;</span>
+  );
+};
+
+<span class="syn-keyword">export default</span> <span class="syn-type">Education</span>;`;
+
     const syntaxHighlightComments = (str) => {
         // Safe wrap comments unless already wrapped
         return str.replace(/(\/\/[^\n]*)/g, '<span class="syn-comment">$1</span>')
@@ -217,6 +304,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (filename === 'About.jsx') return aboutCode;
         if (filename === 'Skills.jsx') return skillsCode;
         if (filename === 'Contacts.jsx') return contactsCode;
+        if (filename === 'Education.jsx') return educationCode;
 
         return syntaxHighlightComments(`// TODO: Content for ${filename} goes here...
 
