@@ -1,0 +1,28 @@
+:root {
+  --bg-main: #201130;
+  --bg-sidebar: #170b24;
+  --bg-activity: #170b24;
+  --bg-status: #fce94f;
+  --bg-titlebar: #170b24;
+  --bg-tabs: #170b24;
+  --bg-tab-active: #201130;
+  --bg-tab-inactive: #170b24;
+  --text-main: #f8f8f2;
+  --text-muted: #8c8cbd;
+  --text-menu: #c0c0d8;
+  --accent-blue: #fce94f;
+  --border-color: #313159;
+  --hover-bg: #313159;
+  --active-item: #313159;
+
+  /* Syntax Highlighting */
+  --syn-keyword: #ff79c6;
+  --syn-string: #fce94f;
+  --syn-comment: #6272a4;
+  --syn-function: #8be9fd;
+  --syn-variable: #f8f8f2;
+  --syn-number: #bd93f9;
+  --syn-property: #f8f8f2;
+  --syn-operator: #ff79c6;
+  --syn-type: #8be9fd;
+}
