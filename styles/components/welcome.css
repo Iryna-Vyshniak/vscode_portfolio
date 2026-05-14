@@ -1,0 +1,222 @@
+/* Welcome Screen */
+.welcome-container {
+  display: flex;
+  padding: clamp(20px, 4vw, 50px);
+  gap: clamp(30px, 5vw, 60px);
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#welcome-content {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' width='400' height='400' fill='rgba(255, 255, 255, 0.02)' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: clamp(150px, 40vmin, 500px);
+}
+
+.welcome-left {
+  flex: 1;
+  max-width: 500px;
+}
+
+.welcome-title {
+  font-family: "Fira Code", monospace;
+  font-size: clamp(1.5rem, 4vw, 2.5rem);
+  font-weight: 300;
+  margin-bottom: clamp(10px, 2vw, 20px);
+}
+
+.welcome-subtitle {
+  font-family: "Fira Code", monospace;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  color: var(--text-muted);
+  font-weight: 600;
+  margin-bottom: clamp(15px, 3vw, 30px);
+}
+
+.btn-primary {
+  display: inline-block;
+  background-color: var(--accent-blue);
+  color: #18182b;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 2px;
+  font-size: 14px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+.section h3 {
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.section ul {
+  list-style: none;
+  margin-bottom: 30px;
+  padding: 0;
+}
+
+.section li {
+  margin-bottom: 8px;
+}
+
+.start-link {
+  color: var(--accent-blue);
+  text-decoration: none;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.start-link:hover {
+  text-decoration: underline;
+}
+
+.recent-link {
+  text-decoration: none;
+  font-size: 13px;
+  display: flex;
+  gap: 10px;
+  color: var(--accent-blue);
+}
+
+.recent-link strong {
+  color: var(--syn-keyword);
+}
+
+.recent-link .path {
+  color: #cccccc;
+}
+.recent-link:hover strong {
+  text-decoration: underline;
+}
+
+.welcome-right {
+  flex: 1;
+  max-width: 400px;
+}
+
+.card {
+  margin-bottom: 30px;
+}
+
+.card h3 {
+  font-size: 14px;
+  color: var(--text-main);
+  margin-bottom: 12px;
+  font-weight: normal;
+}
+
+.card-content {
+  background-color: var(--bg-sidebar);
+  padding: 15px;
+  border-radius: 3px;
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+
+.card-content strong {
+  font-size: 13px;
+  color: var(--syn-property);
+  display: block;
+  margin-bottom: 4px;
+}
+
+.card-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+
+.btn-secondary {
+  background-color: var(--accent-blue);
+  color: #18182b;
+  border: none;
+  padding: 4px 12px;
+  cursor: pointer;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.btn-secondary:hover {
+  opacity: 0.9;
+}
+
+.tech-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tech {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 4px 8px;
+  border-radius: 3px;
+  font-size: 12px;
+}
+
+.language-bar-container {
+  margin-top: 15px;
+  background-color: var(--bg-sidebar);
+  padding: 15px;
+  border-radius: 3px;
+}
+
+.language-bar {
+  height: 8px;
+  width: 100%;
+  display: flex;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.lang-js {
+  background-color: var(--syn-string);
+}
+.lang-css {
+  background-color: var(--syn-keyword);
+}
+.lang-html {
+  background-color: var(--syn-number);
+}
+
+.language-legend {
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.language-legend span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+.dot.lang-js-dot {
+  background-color: var(--syn-string);
+}
+.dot.lang-css-dot {
+  background-color: var(--syn-keyword);
+}
+.dot.lang-html-dot {
+  background-color: var(--syn-number);
+}
