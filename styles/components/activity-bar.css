@@ -1,0 +1,92 @@
+/* Activity Bar */
+.activity-bar {
+  width: 48px;
+  background-color: var(--bg-activity);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-right: 1px solid var(--border-color);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.activity-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.activity-icons,
+.activity-icons-bottom {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.activity-icons li,
+.activity-icons-bottom li {
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #df9cf0; /* Pinkish-purple matching the unactive icons in photo */
+  position: relative;
+  transition: all 0.2s ease;
+}
+
+.act-icon {
+  width: 18px;
+  height: 18px;
+  opacity: 0.8;
+  transition: all 0.2s ease;
+}
+
+.activity-icons li:hover,
+.activity-icons-bottom li:hover {
+  color: var(--text-main);
+}
+.activity-icons li:hover .act-icon,
+.activity-icons-bottom li:hover .act-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 4px rgba(252, 241, 65, 0.3)); /* Banana glow */
+}
+
+.activity-icons li.active {
+  color: var(--accent-blue);
+}
+.activity-icons li.active .act-icon {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(252, 241, 65, 0.5));
+}
+
+.activity-icons li.active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: var(--accent-blue);
+  border-radius: 0 2px 2px 0;
+}
+
+.settings-icon {
+  position: relative;
+}
+
+.notification-badge {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: #f0f0f5; 
+  color: #18182b; 
+  font-size: 10px;
+  font-weight: bold;
+  height: 14px;
+  width: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid #18182b;
+}
