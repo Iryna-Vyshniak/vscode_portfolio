@@ -1,0 +1,71 @@
+/* Status Bar */
+.status-bar {
+  height: 22px;
+  background-color: var(--bg-status);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #18182b; 
+  padding: 0 10px;
+  font-size: clamp(10px, 1.5vw, 12px);
+  flex-shrink: 0;
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.status-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.status-left {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  height: 100%;
+}
+
+.status-right {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-weight: 500;
+}
+
+.status-item {
+  cursor: pointer;
+  padding: 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: clamp(10px, 1.5vw, 12px);
+  height: 100%;
+}
+
+.status-icon {
+  width: 14px;
+  height: 14px;
+  fill: currentColor;
+}
+
+.status-item:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+a.status-item { 
+  text-decoration: none; 
+  color: inherit; 
+}
+
+.remote-status {
+  background-color: #201130;
+  color: #fce94f;
+  padding: 0 12px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+}
+
+.remote-status:hover {
+  background-color: rgba(32, 17, 48, 0.9);
+}
