@@ -1,0 +1,861 @@
+/* preview.css — Luxury Refined Edition v4 */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500&family=Playfair+Display:wght@700;800;900&display=swap');
+
+/* ─────────────────────────────────────────
+   Design Tokens
+   ───────────────────────────────────────── */
+:root {
+  --p-bg:            #070707;
+  --p-surface:       #0d0d0d;
+  --p-surface-mid:   #111111;
+  --p-surface-raised:#161616;
+
+  --p-text-1: #eeeeee;  
+  --p-text-2: #b4b4b4;   
+  --p-text-3: #888888;   
+  --p-text-4: #525252;   
+
+  --p-gold:      #c6a65a;
+  --p-gold-dim:  rgba(198, 166, 90, 0.08);
+  --p-gold-line: rgba(198, 166, 90, 0.28);
+
+  /* Borders */
+  --p-line:       rgba(255, 255, 255, 0.07);
+  --p-line-hover: rgba(255, 255, 255, 0.13);
+
+  /* Typography */
+  --f-display: 'Cormorant Garamond', 'Garamond', Georgia, serif;
+  --f-display-heavy: 'Playfair Display', Georgia, serif;
+  --f-body:    'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --f-mono:    'SF Mono', 'Fira Code', monospace;
+
+  /* Glow */
+  --p-gold-bright: #dfc07a;
+  --p-glow: rgba(198, 166, 90, 0.15);
+
+  /* Motion */
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ─────────────────────────────────────────
+   Animation — light sweep, contained
+   ───────────────────────────────────────── */
+@keyframes sweep {
+  /* width=25% of parent, travels 0→400% of its own width → exits right */
+  0%   { transform: translateX(-100%); opacity: 0;   }
+  8%   {                               opacity: 0.8;  }
+  92%  {                               opacity: 0.8;  }
+  100% { transform: translateX(400%);  opacity: 0;   }
+}
+
+/* ─── Atmospheric layer keyframes ─── */
+
+/* Word: smooth cinematic entrance + gentle breathe */
+@keyframes atm-word-enter {
+  0%   { opacity: 0; filter: blur(8px); }
+  100% { opacity: var(--atm-word-opacity, 0.28); filter: blur(0px); }
+}
+
+@keyframes atm-breathe {
+  0%, 100% { opacity: var(--atm-word-opacity, 0.28); }
+  50%      { opacity: calc(var(--atm-word-opacity, 0.28) + 0.08); }
+}
+
+/* Fog: vertical drift */
+@keyframes fog-drift {
+  0%, 100% { transform: translateY(0px);   opacity: 1;   }
+  50%       { transform: translateY(-14px); opacity: 0.85; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:        0.01ms !important;
+    animation-iteration-count: 1      !important;
+    transition-duration:       0.01ms !important;
+  }
+}
+
+/* ─────────────────────────────────────────
+   Layout
+   ───────────────────────────────────────── */
+
+.preview-container {
+  width: 100%;
+  height: 100%;
+  background: var(--p-bg);
+  position: relative;
+  overflow: hidden;
+  font-family: var(--f-body);
+  color: var(--p-text-1);
+}
+
+/* Atmospheric environmental glow — warm top wash + center bloom */
+.preview-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 35% at 50% 0%, rgba(198, 166, 90, 0.08) 0%, transparent 100%),
+    radial-gradient(ellipse 50% 50% at 50% 45%, rgba(198, 166, 90, 0.04) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.preview-atmosphere {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  user-select: none;
+}
+
+/* Layer 0: Wide deep background fog */
+.atm-fog--bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0; left: 0;
+  background:
+    radial-gradient(ellipse 90% 50% at 50% 0%,   rgba(198, 166, 90, 0.10) 0%, transparent 65%),
+    radial-gradient(ellipse 45% 55% at 50% 50%,  rgba(198, 166, 90, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 50% 100%, rgba(20, 14, 5, 0.6)     0%, transparent 80%);
+}
+
+/* Layer 1: God rays from above — cinematic volumetric */
+.atm-god-rays {
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 85%;
+  background: conic-gradient(
+    from 268deg at 50% 0%,
+    transparent              0deg,
+    rgba(198,166,90, 0.045)  4deg,
+    transparent              8deg,
+    transparent             13deg,
+    rgba(198,166,90, 0.03)  17deg,
+    transparent             21deg,
+    transparent             26deg,
+    rgba(198,166,90, 0.05)  30deg,
+    transparent             34deg,
+    rgba(198,166,90, 0.025) 42deg,
+    transparent             46deg,
+    transparent            360deg
+  );
+  animation: fog-drift 28s ease-in-out infinite;
+  opacity: 0.8;
+  filter: blur(2px);
+}
+
+/* Layer 2: Architectural word */
+.atm-word-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.atm-word {
+  font-family: var(--f-display-heavy);
+  font-size: clamp(6rem, 18vw, 28rem);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  line-height: 0.85;
+  text-transform: uppercase;
+  position: relative;
+  --atm-word-opacity: 0.28;
+
+  /* Top-lit gradient — bright at top (where light hits), fading to dark at bottom */
+  background: linear-gradient(
+    180deg,
+    #d1b88e  0%,
+    #a89269 25%,
+    #5a4c35 60%,
+    #241d13 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  /* Smooth cinematic entrance → then breathe */
+  opacity: 0;
+  animation:
+    atm-word-enter 3s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards,
+    atm-breathe 16s ease-in-out 3.5s infinite;
+
+  /* Edge dissolve — only first & last letters darkened */
+  -webkit-mask-image: linear-gradient(
+    90deg,
+    transparent   0%,
+    rgba(0,0,0,0.4) 4%,
+    rgba(0,0,0,1) 12%,
+    rgba(0,0,0,1) 88%,
+    rgba(0,0,0,0.4) 96%,
+    transparent  100%
+  );
+  mask-image: linear-gradient(
+    90deg,
+    transparent   0%,
+    rgba(0,0,0,0.4) 4%,
+    rgba(0,0,0,1) 12%,
+    rgba(0,0,0,1) 88%,
+    rgba(0,0,0,0.4) 96%,
+    transparent  100%
+  );
+
+  /* 3D depth via stacked drop-shadows (works with background-clip: text) */
+  -webkit-text-stroke: 1px rgba(180, 150, 100, 0.15);
+  filter:
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.8))
+    drop-shadow(0 10px 15px rgba(0, 0, 0, 0.7))
+    drop-shadow(0 24px 40px rgba(0, 0, 0, 0.6));
+}
+
+/* 3D shadow duplicate — offset behind the main text for depth */
+.atm-word::after {
+  content: 'PORTFOLIO';
+  position: absolute;
+  inset: 0;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  text-transform: inherit;
+  color: rgba(0, 0, 0, 0.6);
+  transform: translate(4px, 8px);
+  z-index: -1;
+  filter: blur(4px);
+  -webkit-mask-image: inherit;
+  mask-image: inherit;
+}
+
+/* Layer 4: Centre ambient warmth */
+.atm-fog--center {
+  position: absolute;
+  width: 70%;
+  height: 55%;
+  top: 22%; left: 15%;
+  background: radial-gradient(
+    ellipse at 50% 50%,
+    rgba(198, 166, 90, 0.07) 0%,
+    transparent 70%
+  );
+  animation: fog-drift 26s ease-in-out infinite;
+  animation-delay: -10s;
+}
+
+.preview-scroll-area {
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+  padding: clamp(40px, 5.5vw, 80px) clamp(32px, 5vw, 72px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  z-index: 5;
+}
+
+.preview-scroll-area::-webkit-scrollbar       { width: 3px; }
+.preview-scroll-area::-webkit-scrollbar-track { background: transparent; }
+.preview-scroll-area::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 3px;
+}
+
+.elegant-content-wrapper {
+  max-width: 740px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 80px;
+}
+
+/* ─────────────────────────────────────────
+   Cards
+   ───────────────────────────────────────── */
+
+.elegant-card {
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: 12px;
+  padding: clamp(36px, 5vw, 56px);
+  position: relative;
+  transition:
+    border-color 0.5s ease,
+    background   0.5s ease,
+    box-shadow   0.5s ease;
+
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.03),
+    0 4px 24px rgba(0, 0, 0, 0.4),
+    0 16px 40px rgba(0, 0, 0, 0.6);
+}
+/* Subtle top-edge highlight — like cinematic rim light */
+.elegant-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 8px; right: 8px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,240,200,0.14), transparent);
+  border-radius: 1px;
+}
+/* Warm inner top light */
+.elegant-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 60%;
+  background: linear-gradient(180deg, rgba(198,166,90,0.02) 0%, transparent 100%);
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+.elegant-card:hover {
+  border-color: var(--p-line-hover);
+  background: var(--p-surface-mid);
+}
+
+/* ─────────────────────────────────────────
+   Typography Hierarchy
+   ───────────────────────────────────────── */
+
+/* H1 — large display, editorial */
+.elegant-title {
+  font-family: var(--f-display);
+  font-size: clamp(2.6rem, 5.5vw, 4.2rem);
+  font-weight: 300;
+  color: var(--p-text-1);
+  line-height: 1.08;
+  letter-spacing: 0.01em;
+  margin-bottom: 10px;
+}
+
+.elegant-subtitle {
+  font-family: var(--f-body);
+  font-size: 0.7rem;
+  font-weight: 400;
+  color: var(--p-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  margin-bottom: 32px;
+}
+
+/* H3 section title — hairline with animated gold sweep, fully contained */
+.elegant-section-title {
+  font-family: var(--f-display);
+  font-size: clamp(1.2rem, 2.2vw, 1.55rem);
+  font-weight: 400;
+  color: var(--p-text-1);
+  margin-top: 36px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  position: relative;
+  overflow: hidden; /* 👈 contains the ::before sweep */
+}
+/* Hairline track */
+.elegant-section-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--p-line);
+  z-index: 0;
+}
+/* Gold accent sweep — stays inside, always */
+.elegant-section-title::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 25%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--p-gold-line), transparent);
+  z-index: 1;
+  animation: sweep 14s ease-in-out infinite;
+}
+
+/* Body text */
+.elegant-text {
+  font-family: var(--f-body);
+  font-size: 0.9rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--p-text-2);
+  margin-bottom: 14px;
+}
+
+/* Code comment lines */
+.elegant-section {
+  margin: 24px 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-left: 1px;
+  border-left: 1px solid var(--p-text-4);
+}
+
+.ui-comment {
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  color: var(--p-text-4);
+  line-height: 1.65;
+  display: block;
+  padding-left: 12px;
+  font-style: italic;
+}
+
+/* ─────────────────────────────────────────
+   Blockquote
+   ───────────────────────────────────────── */
+
+.elegant-quote {
+  font-family: var(--f-display);
+  font-style: italic;
+  font-size: 1.25rem;
+  font-weight: 300;
+  color: var(--p-text-2);
+  line-height: 1.75;
+  margin: 28px 0;
+  padding: 20px 24px;
+  border-left: 1px solid var(--p-gold-line);
+  background: var(--p-gold-dim);
+  border-radius: 0 6px 6px 0;
+}
+
+/* ─────────────────────────────────────────
+   Tags — refined minimal chips
+   ───────────────────────────────────────── */
+
+.elegant-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-bottom: 18px;
+}
+
+.elegant-tag {
+  padding: 4px 13px;
+  background: transparent;
+  border: 1px solid var(--p-line);
+  border-radius: 3px;
+  font-family: var(--f-body);
+  font-size: 0.73rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  color: var(--p-text-3);  /* #888888 on #0d0d0d = 5.8:1 ✓ AA */
+  transition: border-color 0.35s ease, color 0.35s ease;
+  cursor: default;
+}
+.elegant-tag:hover {
+  border-color: var(--p-line-hover);
+  color: var(--p-text-2);
+}
+/* Interactive tags (anchor elements) — keyboard & pointer accessible */
+a.elegant-tag {
+  cursor: pointer;
+  text-decoration: none;
+}
+a.elegant-tag:focus-visible {
+  outline: none;
+  border-color: var(--p-gold);
+  box-shadow: 0 0 0 2px #070707, 0 0 0 4px rgba(198, 166, 90, 0.5);
+}
+
+/* ─────────────────────────────────────────
+   Timeline — minimal, architectural
+   ───────────────────────────────────────── */
+
+.elegant-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.timeline-item {
+  position: relative;
+  padding-left: 20px;
+}
+
+/* Gold node — 4px, sharp, no glow */
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--p-gold);
+  flex-shrink: 0;
+}
+
+/* Rail — 1px static line */
+.timeline-item::after {
+  content: '';
+  position: absolute;
+  left: 1.5px;
+  top: 23px;
+  bottom: -28px;
+  width: 1px;
+  background: var(--p-line);
+}
+.timeline-item:last-child::after { display: none; }
+
+.timeline-meta {
+  font-family: var(--f-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--p-text-3);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.timeline-title {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--p-text-1);
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.timeline-desc {
+  font-family: var(--f-body);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--p-text-2);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* ─────────────────────────────────────────
+   Project Grid
+   ───────────────────────────────────────── */
+
+.elegant-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  background: var(--p-surface);
+  border: 1px solid var(--p-line);
+  border-radius: 12px;
+  padding: clamp(16px, 3vw, 24px);
+}
+
+/* Card — premium elevated panel */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--p-line);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--p-surface);
+  position: relative;
+  transition:
+    border-color 0.5s ease,
+    background   0.5s ease,
+    transform    0.5s var(--ease);
+}
+/* Top edge light catch */
+.project-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10px; right: 10px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.07), transparent);
+  z-index: 2;
+  pointer-events: none;
+}
+.project-card:hover {
+  border-color: var(--p-line-hover);
+  background: var(--p-surface-mid);
+  transform: translateY(-3px);
+}
+
+/* Image container with overlay */
+.project-img-container {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #050505;
+  overflow: hidden;
+  position: relative;
+  border-bottom: 1px solid var(--p-line);
+}
+/* Gradient overlay over image — darkens bottom for text readability */
+.project-img-container::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 40%,
+    rgba(7, 7, 7, 0.5) 100%
+  );
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+.project-card:hover .project-img-container::after {
+  opacity: 0.4;
+}
+.project-img-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.9s var(--ease), opacity 0.5s ease;
+  opacity: 0.8;
+}
+.project-card:hover .project-img-container img {
+  transform: scale(1.04);
+  opacity: 1;
+}
+
+/* Info area */
+.project-info {
+  padding: 20px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0;
+}
+
+/* Project number + title row */
+.project-header {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.project-title {
+  font-family: var(--f-display);
+  font-size: 1.15rem;
+  font-weight: 400;
+  color: var(--p-text-1);
+  line-height: 1.25;
+  margin: 0;
+}
+
+.project-stack {
+  font-family: var(--f-body);
+  font-size: 0.63rem;
+  font-weight: 500;
+  color: var(--p-gold);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  margin-bottom: 14px;
+  opacity: 0.75;
+}
+
+.project-desc {
+  font-family: var(--f-body);
+  font-size: 0.83rem;
+  font-weight: 300;
+  color: var(--p-text-2);
+  line-height: 1.75;
+  margin-bottom: 16px;
+  flex: 1;
+}
+
+/* Feature list inside project cards */
+.project-points {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+.project-points li {
+  font-family: var(--f-body);
+  font-size: 0.8rem;
+  font-weight: 300;
+  color: var(--p-text-2);
+  line-height: 1.7;
+  padding-left: 14px;
+  position: relative;
+}
+.project-points li::before {
+  content: '–';
+  position: absolute;
+  left: 0;
+  color: var(--p-text-4);
+  font-size: 0.75rem;
+}
+
+/* ─────────────────────────────────────────
+   Lists — editorial markers
+   ───────────────────────────────────────── */
+
+.elegant-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.elegant-list li {
+  font-family: var(--f-body);
+  font-size: 0.875rem;
+  font-weight: 300;
+  color: var(--p-text-2);
+  line-height: 1.75;
+  padding-left: 16px;
+  position: relative;
+}
+.elegant-list li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--p-text-4);
+  font-size: 0.75rem;
+  top: 2px;
+}
+
+/* ─────────────────────────────────────────
+   Links — clean left-to-right underline
+   ───────────────────────────────────────── */
+
+.elegant-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: auto;
+  align-self: flex-start;
+  color: var(--p-text-2);
+  text-decoration: none;
+  font-family: var(--f-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-bottom: 4px;
+  position: relative;
+  transition: color 0.35s ease;
+}
+.elegant-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: var(--p-gold);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.45s var(--ease);
+}
+.elegant-link:hover { color: var(--p-gold); }
+.elegant-link:hover::after { transform: scaleX(1); }
+/* Keyboard focus — WCAG 2.4.7 Focus Visible */
+.elegant-link:focus-visible {
+  outline: none;
+  color: var(--p-gold);
+  box-shadow: 0 2px 0 0 var(--p-gold);
+}
+
+/* ─────────────────────────────────────────
+   Status badge & About header
+   ───────────────────────────────────────── */
+
+.about-header {
+  text-align: center;
+  margin-bottom: 44px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 14px;
+  background: transparent;
+  border: 1px solid var(--p-line);
+  border-radius: 3px;
+  font-family: var(--f-body);
+  font-size: 0.68rem;
+  font-weight: 400;
+  color: var(--p-text-3);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+.status-badge::before {
+  content: '';
+  display: inline-block;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--p-gold);
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+/* ─────────────────────────────────────────
+   Contact button-links
+   ───────────────────────────────────────── */
+
+.contact-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 44px;
+}
+
+.btn-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 11px 28px;
+  text-decoration: none;
+  border-radius: 4px;
+  font-family: var(--f-body);
+  font-size: 0.82rem;
+  font-weight: 400;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  /* Rest state */
+  color: #9a9a9a;                      
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+
+  /* Transition: color, border, background */
+  transition:
+    color       0.45s ease,
+    border-color 0.45s ease,
+    background  0.45s ease;
+
+  /* Contain focus ring */
+  position: relative;
+}
+
+/* Hover: warm gold-tinted text, soft gold border, barely-there tint */
+.btn-link:hover {
+  color: #d4b96e;                       
+  border-color: rgba(198, 166, 90, 0.35);
+  background: rgba(198, 166, 90, 0.05);
+}
+
+/* Focus-visible */
+.btn-link:focus-visible {
+  outline: none;
+  box-shadow:
+    0 0 0 2px #0d0d0d,
+    0 0 0 4px rgba(198, 166, 90, 0.6);
+}
+
+/* Active/pressed: subtle brightness dip */
+.btn-link:active {
+  background: rgba(198, 166, 90, 0.08);
+  color: #c6a65a;
+}

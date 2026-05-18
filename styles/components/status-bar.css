@@ -55,17 +55,3 @@ a.status-item {
   text-decoration: none; 
   color: inherit; 
 }
-
-.remote-status {
-  background-color: #201130;
-  color: #fce94f;
-  padding: 0 12px;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-}
-
-.remote-status:hover {
-  background-color: rgba(32, 17, 48, 0.9);
-}
